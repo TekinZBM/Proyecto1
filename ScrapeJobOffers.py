@@ -15,9 +15,6 @@ import json
 #Paso 6 => Haz que esa variable que sea un argumento para la funcion scrapeWeb3Offers .xxxx
 #Paso 7 => En mi main printea la lista de los paises
 #Paso 8 => Coger la segunda pagina tambien de ofertas 
-import requests
-from bs4 import BeautifulSoup
-import json
 
 def scrapeWeb3Offers(country):
     # Crear una lista para almacenar todas las ofertas

@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from ScrapeJobOffers import scrapeWeb3Offers
 
 def scrape_offer_content(link):
     try:
@@ -27,8 +28,3 @@ def scrape_offer_content(link):
             return f"Error al obtener la página: Código de estado {response.status_code}"
     except Exception as e:
         return f"Error: {str(e)}"
-
-# Ejemplo de uso
-link = "https://web3.career/sre-blockchain-iftother/65240"
-contenido_oferta = scrape_offer_content(link)
-print(contenido_oferta)

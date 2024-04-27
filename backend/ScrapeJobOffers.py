@@ -18,7 +18,7 @@ from generatelink import generate_offer_link
 #Paso 8 => Coger la segunda pagina tambien de ofertas xxxxxx
 #Paso 9 => Agregar nuevo key al objeto de cada oferta , el link hacia la oferta xxxxxx
 #Paso 10 => Funcion nueva "scrapeOfferacontnet" que tenga como argumento : link. Tiene que devolver la descripcion de la 
-#oferta que le pases por el link
+#oferta que le pases por el link  xxxxxxxxxxxxx
 
 #Paso 11 => Crea una array nueva que contenga lo mismo que la array de las ofertas iniciales pero cada oferta tiene extra la
 #descipcion de la oferta

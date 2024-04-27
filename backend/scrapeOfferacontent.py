@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def scrapeOfferContent(link):
+def scrape_offer_content(link):
     try:
         # Realizar la solicitud GET al enlace proporcionado
         response = requests.get(link)
@@ -14,15 +14,13 @@ def scrapeOfferContent(link):
             # Analizar el contenido HTML de la página
             soup = BeautifulSoup(html_content, 'html.parser')
             
-            # Buscar todos los elementos que contienen la clase 'section'
-            sections = soup.find_all('div', class_='section')
+            # Buscar el elemento que contiene la clase 'text-dark-grey-text'
+            main_div = soup.find('div', class_='text-dark-grey-text')
             
-            # Extraer el texto de todas las secciones encontradas
-            content = ''
-            for section in sections:
-                content += section.get_text(separator='\n').strip() + '\n\n'
+            # Extraer todo el texto contenido en el elemento principal
+            content = main_div.get_text(separator='\n').strip()
                 
-            # Devolver el contenido de todas las secciones
+            # Devolver el contenido de la oferta
             return content
             
         else:
@@ -31,6 +29,6 @@ def scrapeOfferContent(link):
         return f"Error: {str(e)}"
 
 # Ejemplo de uso
-link = "https://web3.career/product-lead-moonsong-labs/57085"
-contenido_oferta = scrapeOfferContent(link)
+link = "https://web3.career/sre-blockchain-iftother/65240"
+contenido_oferta = scrape_offer_content(link)
 print(contenido_oferta)

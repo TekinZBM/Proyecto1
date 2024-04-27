@@ -27,6 +27,9 @@ from generatelink import generate_offer_link
 #50 ofertas ( o las que salgan en las primeras 2 paginas ) y cada oferta alli , tiene titulo , empresa , salario
 #ubicacion , link de la oferta y descripcion
 
+#Paso 13 => CUANDO NO LE PASE NINGUN PAIS , ME TIENE QUE DEVOLVER LAS OFERTAS DE LA PAGINA PRINCIPAL .
+
+
 
 
 def get_job_ids(url):

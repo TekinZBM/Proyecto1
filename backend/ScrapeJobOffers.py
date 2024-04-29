@@ -44,6 +44,8 @@ from generatelink import generate_offer_link
 
 
 
+
+
 def get_job_ids(response, url):
     # Realizar la solicitud GET a la página web
     

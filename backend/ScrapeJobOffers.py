@@ -25,16 +25,28 @@ from generatelink import generate_offer_link
 
 #Paso 12 => Haz la funcion principal de main . Esa funcion toma un argumento (el pais) y te devuelve por ese pais,
 #50 ofertas ( o las que salgan en las primeras 2 paginas ) y cada oferta alli , tiene titulo , empresa , salario
-#ubicacion , link de la oferta y descripcion
+#ubicacion , link de la oferta y descripcionxxxxx
 
-#Paso 13 => CUANDO NO LE PASE NINGUN PAIS , ME TIENE QUE DEVOLVER LAS OFERTAS DE LA PAGINA PRINCIPAL .
+#Paso 13 => CUANDO NO LE PASE NINGUN PAIS , ME TIENE QUE DEVOLVER LAS OFERTAS DE LA PAGINA PRINCIPAL.
+
+#Section 2
+#Paso 1 : Dentro de la carpeta backend crea una carpeta llamada IA , haz un archivo que se llame writeCompanyLetter
+#En ese archivo crea una funcion que tome 2 parametros :CV Y OfferDescription
+#Paso 2 : En writteCompanyLetter , crea una variable , que tenga un promt(string ) para la IA , que utilize
+#datos de tu CV , y la descripcion de la oferta , para crear una carta para esa empresa , que de buena imagen sobre la persona
+#que este buscando trabajo .
+#Paso 3 : Lee la documentacion y invesitga el API de openAI para ver como funciona en python
+#Paso 4 : Crea una variable que se llame aiResponse  y que tenga el resultado creado por la IA
+#Printea aiResponse , si funciona printea el resultado en main
+#Paso 5 : Asegurate de poder pasarle el cv y la descripcion de la oferta a la funcion de AI desde main .
 
 
 
 
-def get_job_ids(url):
+
+def get_job_ids(response, url):
     # Realizar la solicitud GET a la página web
-    response = requests.get(url)
+    
 
     # Verificar si la solicitud fue exitosa (código de estado 200)
     if response.status_code == 200:
@@ -53,27 +65,38 @@ def get_job_ids(url):
         print(f"Error al obtener la página {url}: {response.status_code}")
         return []
 
-def scrapeWeb3Offers(country):
+def scrapeWeb3Offers(country="default"):
     # Crear una lista para almacenar todas las ofertas
     all_offers = []
-
+    
     # Iterar sobre las páginas
     for page_number in [1, 2]:
+
+
+        if country != "default" :
         # URL de la página web
-        url = f"https://web3.career/web3-jobs-{country.lower()}?page={page_number}"
+            url = f"https://web3.career/web3-jobs-{country.lower()}?page={page_number}"
 
-        # Obtener las IDs de las ofertas en la página actual
-        job_ids = get_job_ids(url)
 
-        # Aquí puedes usar las IDs de las ofertas para realizar las operaciones necesarias
+          # Realizar la solicitud GET a la página web
+        else :
+            url = "https://web3.career/"
 
-        # Realizar la solicitud GET a la página web
+
         response = requests.get(url)
+        # Obtener las IDs de las ofertas en la página actual
+        job_ids = get_job_ids(response, url)
+        # Aquí puedes usar las IDs de las ofertas para realizar las operaciones necesarias            
+
+       
+
+        
 
         # Verificar si la solicitud fue exitosa (código de estado 200)
         if response.status_code == 200:
             # Parsear el contenido HTML
             soup = BeautifulSoup(response.content, "html.parser")
+
            
             # Encontrar todas las instancias de "@type": "JobPosting"
             job_postings = soup.find_all("script", {"type": "application/ld+json"})
@@ -101,6 +124,7 @@ def scrapeWeb3Offers(country):
                         "Salary": salary,
                         "Location": location,
                         "Link" : offer_link
+                        
                     }
                     page_offers.append(formatted_offer)
             

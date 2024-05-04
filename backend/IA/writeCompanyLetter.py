@@ -8,7 +8,7 @@ from openai import OpenAI
 client = OpenAI()
 
 def writeCompanyLetter(CV , offerDescription):
-#OpenAIKey : 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
+
 
 
 

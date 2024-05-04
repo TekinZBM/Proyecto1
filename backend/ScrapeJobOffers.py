@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import json
 from generatelink import generate_offer_link
 
-#sk-proj-wUTtbV55fEc64tu3RQ9eT3BlbkFJHpV48hqErE3KhuWs2crG
 #Esta funcion tiene que utilizar beautifulSoup .
 #Para leer la siguiente pagina : https://web3.career/
 #Paso 1 => Hacer un print con el contenido de esa web .xxxx

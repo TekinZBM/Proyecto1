@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from generatelink import generate_offer_link
+
+#sk-proj-wUTtbV55fEc64tu3RQ9eT3BlbkFJHpV48hqErE3KhuWs2crG
 #Esta funcion tiene que utilizar beautifulSoup .
 #Para leer la siguiente pagina : https://web3.career/
 #Paso 1 => Hacer un print con el contenido de esa web .xxxx
@@ -39,6 +41,12 @@ from generatelink import generate_offer_link
 #Paso 4 : Crea una variable que se llame aiResponse  y que tenga el resultado creado por la IA
 #Printea aiResponse , si funciona printea el resultado en main
 #Paso 5 : Asegurate de poder pasarle el cv y la descripcion de la oferta a la funcion de AI desde main .
+
+#Section 3 : FLASK APi
+#Paso 1 : Con flask , crea un endpoint /job-offers que cuando le hagas get con un pais como parametro , te devueva 
+#las ofertas de ese pais . Por ejemplo get("/job-offers/spain") el server me tiene que devolver las ofertas de España .
+#Paso 2 : Crea un endpoint que acepte 2 parametros , descripcion oferta y CV y que te devuelva la respuesta el GPT 
+#Hay que pasarle un CV y una descripcion de trabajo desde postman .
 
 
 

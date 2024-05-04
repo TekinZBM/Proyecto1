@@ -1,8 +1,9 @@
-import openai
+from openai import OpenAI
+client = OpenAI()
 
-#openai.api_key = "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"
 
-completion = openai.chat.completions.create(
+
+completion = client.chat.completions.create(
   model="gpt-3.5-turbo",
   messages=[
     {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},

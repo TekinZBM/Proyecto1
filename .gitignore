@@ -1,0 +1,18 @@
+
+Sure, you can copy and paste the following lines into your .gitignore file to ignore commonly ignored files and directories:
+
+bash
+Copy code
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# macOS
+.DS_Store

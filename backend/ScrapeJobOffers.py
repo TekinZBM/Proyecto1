@@ -47,7 +47,25 @@ from generatelink import generate_offer_link
 #Paso 2 : Crea un endpoint que acepte 2 parametros , descripcion oferta y CV y que te devuelva la respuesta el GPT 
 #Hay que pasarle un CV y una descripcion de trabajo desde postman .
 
-
+#Section 4 : FrontEND
+#Paso 1 : Crea una carpeta que se llame FrontEnd en tu proyecto
+#Paso 2 : Crea una pagina web que contenga 1 pagina con 1 titulo : TEKIN EL OFERTAS
+#Paso 3 : Incluye una imagen de un programador
+#Paso 4 : Utiliza el endpoint de flask , para renderizar las ofertas de españa , con todos los detalles de las ofertas 
+#en una lista desordenada (ul)
+#Paso 5 : Incluye un input para que el usuario pueda intrudicr el nombre de un pais , por defecto españa , place holder Alemania
+#un botod debajo con el texto buscar 
+#Paso 6 : Cuando introduzcas el nombre de un pais y le des a buscar , tienes que renderizar las ofertas recibir de
+#Paso 7 : Cuando introduzcas el nombre de un pais y le des a buscar , tienes que renderizar las ofertas recibidas de flask en html , 
+#debajo del input . Cada oferta con fondo blanco , el titulo que sea h2 , la descripcion y otros detalles <p>. El color de los textos que sea
+#blanco . Las ofertas que esten serapadas por 16px entre ellas .
+#Paso 8 : Debajo del todo , incluye una input tipo text area que contenga el titulo "CV "y el placeholder un ejemplo de lo que tiene
+#que poner
+#Paso 9 : Cuando le des click a una oferta , tiene que coger lo que esta en el textarea del CV,y utilizar el endpoint del AI
+#con el CV y la descripcion de la oferta a la que le des click , para generar una carta para esa empresa . Si no hay nada en cv,
+#tiene que estar desactivada la opcion de darle click a la oferta(y tiene que dar una pista visual de que esta desactivada)
+#Renderiza la carta para la empresa en la pagina . Dale css para que quede bien .
+#Paso 10 : Utiliza css para hacer la pagina lo mas fresca posible
 
 
 
@@ -74,38 +92,26 @@ def get_job_ids(response, url):
         print(f"Error al obtener la página {url}: {response.status_code}")
         return []
 
+
 def scrapeWeb3Offers(country="default"):
     # Crear una lista para almacenar todas las ofertas
     all_offers = []
     
     # Iterar sobre las páginas
     for page_number in [1, 2]:
-
-
-        if country != "default" :
-        # URL de la página web
+        if country != "default":
+            # URL de la página web
             url = f"https://web3.career/web3-jobs-{country.lower()}?page={page_number}"
-
-
-          # Realizar la solicitud GET a la página web
-        else :
+        else:
             url = "https://web3.career/"
 
-
+        # Realizar la solicitud GET a la página web
         response = requests.get(url)
-        # Obtener las IDs de las ofertas en la página actual
-        job_ids = get_job_ids(response, url)
-        # Aquí puedes usar las IDs de las ofertas para realizar las operaciones necesarias            
-
-       
-
-        
 
         # Verificar si la solicitud fue exitosa (código de estado 200)
         if response.status_code == 200:
             # Parsear el contenido HTML
             soup = BeautifulSoup(response.content, "html.parser")
-
            
             # Encontrar todas las instancias de "@type": "JobPosting"
             job_postings = soup.find_all("script", {"type": "application/ld+json"})
@@ -118,7 +124,7 @@ def scrapeWeb3Offers(country="default"):
                 job_data = json.loads(job_posting.text)
                 if job_data.get("@type") == "JobPosting":
                     # Obtener la ID de la oferta
-                    offer_id = job_ids[i]
+                    offer_id = get_job_ids(response, url)[i]
 
                     title = job_data.get("title", "No title")
                     company = job_data.get("hiringOrganization", {}).get("name", "No company")
@@ -127,6 +133,7 @@ def scrapeWeb3Offers(country="default"):
                     link = job_data.get("url", "No link")  # Obtener el enlace de la oferta
                     offer_link = generate_offer_link(title, company, offer_id)
 
+                    
                     formatted_offer = {
                         "Title": title,
                         "Company": company,

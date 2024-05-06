@@ -35,15 +35,12 @@ def writeCompanyLetter(CV , offerDescription):
             max_tokens=200,  # Ajustamos el máximo de tokens para cumplir con las métricas
             
         )
+
     return response
+
 
    
 
   
 
 
-dummyCV = "John Doe\nEducación: Licenciatura en Ciencias de la Computación\nExperiencia: 5 años de experiencia en desarrollo de software"
-offerDescription = "Empresa X está buscando un Ingeniero de Software Senior con experiencia en Python y el framework Django."
-airesponse = writeCompanyLetter(dummyCV, offerDescription)
-
-print (airesponse)

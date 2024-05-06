@@ -1,11 +1,16 @@
 from ScrapeJobOffers import scrapeWeb3Offers, get_job_ids
 from scrapeOfferacontent import scrape_offer_content
 from curriculum import dummyCV
-from flask import Flask, request, jsonify
-from IA.writeCompanyLetter import writeCompanyLetter
+from flask import Flask, request, jsonify,render_template
+from IA.writeCompanyLetter import writeCompanyLetter 
 # Obtener las ofertas de trabajo
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../frontend/templates')
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
 
 @app.route('/job-offers')
 def get_job_offers():
@@ -16,7 +21,7 @@ def get_job_offers():
     job_offers = scrapeWeb3Offers(country)
 
     # Devolver las ofertas de trabajo como respuesta JSON
-    return jsonify(job_offers)
+    return render_template("job_offers.html", job_offers=job_offers)
 
 
 
@@ -34,11 +39,8 @@ def get_ia_response():
     
     #Devolver la respuesta del IA como JSON 
     return jsonify(ia_response_dict)
-    
-
 if __name__ == '__main__':
     app.run(debug=True)
-
 
 
 

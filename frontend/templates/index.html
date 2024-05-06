@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEKIN EL OFERTAS</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        /* Establecer la imagen como fondo */
+        background-image: url("https://img.freepik.com/foto-gratis/experiencia-programacion-persona-que-trabaja-codigos-computadora_23-2150010125.jpg?w=826&t=st=1714983272~exp=1714983872~hmac=2c1302415985fd8dc8c3e82d0ae26067e9bc1642bfb8f73561c5e6f54e3f5eec");
+        background-size: cover;
+        background-position: center;
+      }
+      /* Agregar estilos adicionales según sea necesario */
+    </style>
+  </head>
+  <body>
+    <h1>Job Offers</h1>
+
+    <form action="/job-offers" method="GET">
+      <label for="country">Country:</label>
+      <input
+        placeholder="Germany"
+        type="text"
+        id="country"
+        name="country"
+        value="Spain"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <ul id="job-offers-list"></ul>
+  </body>
+</html>

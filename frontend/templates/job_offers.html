@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEKIN EL OFERTAS</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        /* Establecer la imagen como fondo */
+        background-image: url("https://img.freepik.com/foto-gratis/experiencia-programacion-persona-que-trabaja-codigos-computadora_23-2150010125.jpg?w=826&t=st=1714983272~exp=1714983872~hmac=2c1302415985fd8dc8c3e82d0ae26067e9bc1642bfb8f73561c5e6f54e3f5eec");
+        background-size: cover;
+        background-position: center;
+      }
+      
+      /* Agregar estilos adicionales según sea necesario */
+    </style>
+  </head>
+  <body>
+    
+    <form action="/job-offers" method="GET">
+      <label for="country">Country:</label>
+      <input
+        placeholder="Germany"
+        type="text"
+        id="country"
+        name="country"
+        value="Spain"
+      />
+      <button type="submit">Search</button>
+    </form>
+
+        
+        </form>
+        <ul >
+          {% for offer in job_offers %}
+          <li onclick="" style="color: white;background-color: rgba(0, 0, 0, 0.5);margin-bottom: 16px;">
+            <h1>Job Offers</h1>
+            
+            <h1><strong>Title:</strong> {{ offer.Title }} <br></h1>
+            <p><strong>Company:</strong> {{ offer.Company }} <br></p>
+            <p><strong>Salary:</strong> {{ offer.Salary }} <br></p>
+            <p><strong>Location:</strong> {{ offer.Location }} <br></p>
+            <p><strong>Link:</strong> {{ offer.Link }} <br></p>
+            <form style="padding: 10px; background-color: rgba(0, 50, 1, 2.5); border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);text-align: right;" action="/response" method="GET">
+              <label style="color: white;" for="cv">CV</label>
+              <input type="text"
+              placeholder="You have to introduce your CV here . "
+              id="cv"
+              name="cv"
+              >
+              <button type="submit">Create IA response</button>
+            </form>
+        </li>
+          {% endfor %}
+      </ul>
+
+    </ul>
+    
+  </body>
+</html>

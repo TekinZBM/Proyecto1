@@ -32,7 +32,7 @@ def writeCompanyLetter(CV , offerDescription):
             {"role": "system", "content": prompt}
 
             ],
-            max_tokens=200,  # Ajustamos el máximo de tokens para cumplir con las métricas
+            max_tokens=500,  # Ajustamos el máximo de tokens para cumplir con las métricas
             
         )
 

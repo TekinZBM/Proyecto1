@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify,render_template
 from IA.writeCompanyLetter import writeCompanyLetter 
 # Obtener las ofertas de trabajo
 
+
 app = Flask(__name__, template_folder='../frontend/templates')
 @app.route("/")
 def index():
@@ -25,20 +26,21 @@ def get_job_offers():
 
 
 
-@app.route ("/response")
+@app.route("/response")
 def get_ia_response():
-    #Obtener el parametro del CV y Descripcion
+    # Obtener el parámetro del CV y Descripcion
     dummyCV = request.args.get("cv", "default")    
     description = request.args.get("description", "default")
 
-    #Obtener la respuesta del IA  
+    # Obtener la respuesta del IA  
     ia_response = writeCompanyLetter(dummyCV, description)
     
     # Convertir el objeto ChatCompletion a un diccionario
     ia_response_dict = ia_response.to_dict()
+    carta_generada = ia_response_dict['choices'][0]['message']['content']
     
-    #Devolver la respuesta del IA como JSON 
-    return jsonify(ia_response_dict)
+    # Renderizar la plantilla con la respuesta del IA
+    return render_template("iaresponse.html", carta_generada=carta_generada)
 if __name__ == '__main__':
     app.run(debug=True)
 

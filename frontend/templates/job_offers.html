@@ -30,7 +30,15 @@
       />
       <button type="submit">Search</button>
     </form>
-
+    <form style="padding: 10px; background-color: rgba(0, 50, 1, 2.5); border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);text-align: right;" action="/response" method="GET">
+      <label style="color: white;" for="cv">CV</label>
+      <input type="text"
+      placeholder="You have to introduce your CV here . "
+      id="cv"
+      name="cv"
+      >
+      <button type="submit">Create IA response</button>
+    </form>
         
         </form>
         <ul >
@@ -43,14 +51,8 @@
             <p><strong>Salary:</strong> {{ offer.Salary }} <br></p>
             <p><strong>Location:</strong> {{ offer.Location }} <br></p>
             <p><strong>Link:</strong> {{ offer.Link }} <br></p>
-            <form style="padding: 10px; background-color: rgba(0, 50, 1, 2.5); border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);text-align: right;" action="/response" method="GET">
-              <label style="color: white;" for="cv">CV</label>
-              <input type="text"
-              placeholder="You have to introduce your CV here . "
-              id="cv"
-              name="cv"
-              >
-              <button type="submit">Create IA response</button>
+            <form action="/response" >
+              <button>Enviar carta</button>
             </form>
         </li>
           {% endfor %}
